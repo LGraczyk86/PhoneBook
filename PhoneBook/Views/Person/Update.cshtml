@@ -1,0 +1,35 @@
+﻿@model PhoneBook.Models.PersonModel
+<h1>Edytuj kontakt</h1>
+@using (Html.BeginForm("Update", "Person", FormMethod.Post))
+{        
+    @Html.HiddenFor(p => p.ID)
+    @Html.HiddenFor(p=>p.Created)
+    <table>
+        <thead>
+            <tr>
+                <th>@Html.LabelFor(p => p.FirstName)</th>
+                <th>@Html.LabelFor(p => p.LastName)</th>
+                <th>@Html.LabelFor(p => p.Phone)</th>
+                <th>@Html.LabelFor(p => p.Email)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Html.TextBoxFor(p => p.FirstName)</td>
+                <td>@Html.TextBoxFor(p => p.LastName)</td>
+                <td>@Html.TextBoxFor(p => p.Phone)</td>
+                <td>@Html.TextBoxFor(p => p.Email)</td>
+            </tr>
+            <tr>
+                <td>@Html.ValidationMessageFor(p => p.FirstName)</td>
+                <td>@Html.ValidationMessageFor(p => p.LastName)</td>
+                <td>@Html.ValidationMessageFor(p => p.Phone)</td>
+                <td>@Html.ValidationMessageFor(p => p.Email)</td>
+            </tr>
+        </tbody>
+    </table>
+    <p>
+        <button type="submit">Edytuj</button>
+        @*<button @Html.ActionLink("Anuluj", "Index","Person")></button>*@
+    </p>
+}

@@ -1,0 +1,32 @@
+﻿@model PhoneBook.Models.PersonModel
+<h1>Dodaj kontakt</h1>
+@using (Html.BeginForm("Add", "Person", FormMethod.Post))
+{
+    <table>
+        <thead>
+            <tr>
+                <th>@Html.LabelFor(p => p.FirstName)</th>
+                <th>@Html.LabelFor(p => p.LastName)</th>
+                <th>@Html.LabelFor(p => p.Phone)</th>
+                <th>@Html.LabelFor(p => p.Email)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Html.Kendo().TextBoxFor(p => p.FirstName)</td>
+                <td>@Html.Kendo().TextBoxFor(p => p.LastName)</td>
+                <td>@Html.Kendo().MaskedTextBoxFor(p => p.Phone).Mask("000-000-000")</td>
+                <td>@Html.Kendo().MaskedTextBoxFor(p => p.Email).Mask("@wp.pl")</td>
+            </tr>
+            <tr>
+                <td>@Html.ValidationMessageFor(p => p.FirstName)</td>
+                <td>@Html.ValidationMessageFor(p => p.LastName)</td>
+                <td>@Html.ValidationMessageFor(p => p.Phone)</td>
+                <td>@Html.ValidationMessageFor(p => p.Email)</td>
+            </tr>
+        </tbody>
+    </table>
+    @Html.Kendo().Tooltip().For("td").Position(TooltipPosition.Right).Content("Wypełnij wszystkie pola");
+    @Html.Kendo().Button().Content("Dadaj").Name("Button").Icon("save");
+    @*<p><button>Dodaj</button></p>*@
+}

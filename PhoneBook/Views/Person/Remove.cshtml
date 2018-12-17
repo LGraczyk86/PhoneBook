@@ -1,0 +1,31 @@
+﻿@model PhoneBook.Models.PersonModel
+<h1>Usuń kontakt</h1>
+@using (Html.BeginForm("Remove", "Person", FormMethod.Post))
+{
+    @Html.HiddenFor(p => p.ID)
+    <table style="background-color: aqua">
+        <thead>
+        <tr>
+            <th>@Html.LabelFor(p => p.FirstName)</th>
+            <th>@Html.LabelFor(p => p.LastName)</th>
+            <th>@Html.LabelFor(p => p.Phone)</th>
+            <th>@Html.LabelFor(p => p.Email)</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>@Html.DisplayTextFor(p => p.FirstName)</td>
+            <td>@Html.DisplayTextFor(p => p.LastName)</td>
+            <td>@Html.DisplayTextFor(p => p.Phone)</td>
+            <td>@Html.DisplayTextFor(p => p.Email)</td>
+        </tr>
+        <tr>
+            <td>@Html.ValidationMessageFor(p => p.FirstName)</td>
+            <td>@Html.ValidationMessageFor(p => p.LastName)</td>
+            <td>@Html.ValidationMessageFor(p => p.Phone)</td>
+            <td>@Html.ValidationMessageFor(p => p.Email)</td>
+        </tr>
+        </tbody>
+    </table>
+    <p><button>Skasuj</button></p>
+}

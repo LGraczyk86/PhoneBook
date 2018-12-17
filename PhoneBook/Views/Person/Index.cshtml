@@ -1,0 +1,59 @@
+﻿@model List<PhoneBook.Models.PersonModel>
+
+<h1>PhoneBook</h1>
+<h2>wersja 0.1</h2>
+@using (Html.BeginForm("Index", "Person", FormMethod.Post))
+{
+    <p>@Html.TextBox("name", "")</p>
+                     
+    <button>Szukaj</button>
+}
+<h3>@ViewBag.BrakTakiejOsoby</h3>
+<p><a href="@Url.Action("Add")">Dodaj</a></p>
+
+<table>
+    <caption>Książka z numerami telefonicznymi</caption>
+    <thead>
+    <tr>
+        <th>@Html.LabelFor(p => p.ElementAt(1).ID)</th>
+        <th>@Html.LabelFor(p => p.ElementAt(1).FirstName)</th>
+        <th>@Html.LabelFor(p => p.ElementAt(1).LastName)</th>
+        <th>@Html.LabelFor(p => p.ElementAt(1).Phone)</th>
+        <th>@Html.LabelFor(p => p.ElementAt(1).Email)</th>
+        <th>@Html.LabelFor(p => p.ElementAt(1).Created)</th>
+        <th>@Html.LabelFor(p => p.ElementAt(1).Updated)</th>
+        <th colspan="2">Opcje</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var person in Model)
+    {
+        <tr>
+            <td>@person.ID</td>
+            <td>@person.FirstName</td>
+            <td>@person.LastName</td>
+            <td>@person.Phone</td>
+            <td>@person.Email</td>
+            <td>@person.Created</td>
+            <td>@person.Updated</td>
+            <td><a href="@Url.Action("Update", new {id = person.ID})">Edytuj</a></td>
+            <td><a href="@Url.Action("Remove", new {id = person.ID})">Kasuj</a></td>
+        </tr>
+    }
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="2">Liczba rekordów:</td>
+        <td> @ViewBag.TotalNumberOfPerson</td>
+    </tr>
+    </tfoot>
+</table>
+
+<a href="@Url.Action("Index", "Person", new {page = ViewBag.CurvenPage  - 1})">Poprzednia</a>
+<a href="@Url.Action("Index", "Person", new {page = ViewBag.CurvenPage  + 1})">Następna</a>
+<a href="@Url.Action("Index", "Person", new { Page = 1})">Strona Pierwsza</a>
+<a href="@Url.Action("Index", "Person", new { Page = 2})">Strona Druga</a>
+<a href="@Url.Action("Index", "Person", new { Page = 3})">Strona Trzecia</a>
+
+
+
